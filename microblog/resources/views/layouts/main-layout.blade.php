@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    </script><link href="/css/style.css" rel="stylesheet"></head>
+    </script><link href="/css/style.css" rel="stylesheet"></script></head>
 <body>
 
 <div class="wrapper">
@@ -44,9 +44,9 @@
                                 [ Категории ]
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">[ Linux ]</a></li>
-                                <li><a class="dropdown-item" href="#">[ Windows ]</a></li>
-                                <li><a class="dropdown-item" href="#">[ Mac ]</a></li>
+                                @foreach($categories as $category)
+                                <li><a class="dropdown-item" href="/category/{{ $category->id }}/">[ {{ $category->title }} ]</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -74,11 +74,9 @@
                     <section id="category">
                         <div class="title__category">Категории блога:</div>
                         <ul class="items__category">
-                            <li class="item__category">&gt; [ <a href="#" class="link">HTML</a> ]</li>
-                            <li class="item__category">&gt; [ <a href="#" class="link">CSS</a> ]</li>
-                            <li class="item__category">&gt; [ <a href="#" class="link">JS</a> ]</li>
-                            <li class="item__category">&gt; [ <a href="#" class="link">PHP</a> ]</li>
-                            <li class="item__category">&gt; [ <a href="#" class="link">MySQL</a> ]</li>
+                            @foreach($categories as $category)
+                            <li class="item__category">&gt; [ <a href="/category/{{ $category->id }}/" class="link">{{ $category->title }}</a> ]</li>
+                            @endforeach
                         </ul>
                     </section>
                 </div>
