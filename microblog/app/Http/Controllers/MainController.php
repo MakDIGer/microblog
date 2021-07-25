@@ -30,4 +30,15 @@ class MainController extends Controller
         $categories = Category::all();
         return view('pages.about', ['categories' => $categories]);
     }
+
+    public function getCategoryById($id)
+    {
+        $categories = Category::All();
+        $posts = Post::where('category_id', $id)->paginate(4);
+
+        return view('pages.main', [
+            'posts' => $posts,
+            'categories' => $categories
+        ]);
+    }
 }
