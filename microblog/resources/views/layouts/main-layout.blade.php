@@ -50,7 +50,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">[ О проекте ]</a>
+                            <a class="nav-link" href="/about">[ О проекте ]</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">[ Обратная связь ]</a>

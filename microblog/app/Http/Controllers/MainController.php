@@ -8,6 +8,9 @@ use App\Models\Category;
 
 class MainController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $categories = Category::all();
@@ -17,5 +20,14 @@ class MainController extends Controller
             'posts' => $posts,
             'categories' => $categories
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function aboutPage()
+    {
+        $categories = Category::all();
+        return view('pages.about', ['categories' => $categories]);
     }
 }
