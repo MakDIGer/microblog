@@ -59,4 +59,16 @@ class MainController extends Controller
             'tag' => $tag
         ]);
     }
+
+    public function getDate($date)
+    {
+        $categories = Category::All();
+        $posts = Post::whereDate('created_at', $date)->paginate(4);
+
+        return view('pages.main', [
+            'categories' => $categories,
+            'posts' => $posts,
+            'date' => $date
+        ]);
+    }
 }
