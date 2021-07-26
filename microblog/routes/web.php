@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MainController;
+use \App\Http\Controllers\FeedBackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ Route::get('/', [MainController::class, 'index']);
 Route::get('/about', [MainController::class, 'aboutPage']);
 Route::get('/category/{id}/', [MainController::class, 'getCategoryById']);
 Route::get('/tag/{tag}/', [MainController::class, 'getTag']);
+Route::get('/datePosts/{date}/', [MainController::class, 'getDate']);
+Route::get('/feedback', [FeedBackController::class, 'showForm']);
