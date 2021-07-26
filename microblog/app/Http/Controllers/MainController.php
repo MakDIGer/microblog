@@ -35,10 +35,12 @@ class MainController extends Controller
     {
         $categories = Category::All();
         $posts = Post::where('category_id', $id)->paginate(4);
+        $currentCategory = Category::where('id', $id)->first();
 
         return view('pages.main', [
             'posts' => $posts,
-            'categories' => $categories
+            'categories' => $categories,
+            'currentCategory' => $currentCategory
         ]);
     }
 }

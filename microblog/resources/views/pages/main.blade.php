@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    @if(isset($currentCategory))
+        <section class="post">
+            <h3 class="title__post"><a href="/post/{{ $currentCategory->id }}/" class="link">&#123; // {{ $currentCategory->title }} // }</a></h3>
+        </section>
+    @endif
     @foreach ($posts as $post)
     <section class="post">
         <h3 class="title__post"><a href="/post/{{ $post->id }}/" class="link">{{ $post->title }}</a></h3>
