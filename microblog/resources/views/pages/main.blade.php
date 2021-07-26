@@ -10,6 +10,11 @@
             <h3 class="title__post"><a href="/post/{{ $currentCategory->id }}/" class="link">&#123; // {{ $currentCategory->title }} // }</a></h3>
         </section>
     @endif
+    @if(isset($tag))
+        <section class="post">
+            <h3 class="title__post"><a href="/tag/{{ $tag }}/" class="link">&#123; // {{ $tag }} // }</a></h3>
+        </section>
+    @endif
     @foreach ($posts as $post)
     <section class="post">
         <h3 class="title__post"><a href="/post/{{ $post->id }}/" class="link">{{ $post->title }}</a></h3>
@@ -23,7 +28,7 @@
         @endphp
         <p class="tags__post">{ Теги:
             @foreach($arrTags as $tag)
-            &#123;&#123; <a href="/tags/{{ $tag }}/" class="link">{{ $tag }}</a>
+            &#123;&#123; <a href="/tag/{{ $tag }}/" class="link">{{ $tag }}</a>
                 @if($tag !== $arrTags[array_key_last($arrTags)])
                     }},&nbsp;
                 @else

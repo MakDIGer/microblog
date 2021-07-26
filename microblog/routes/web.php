@@ -17,3 +17,4 @@ use \App\Http\Controllers\MainController;
 Route::get('/', [MainController::class, 'index']);
 Route::get('/about', [MainController::class, 'aboutPage']);
 Route::get('/category/{id}/', [MainController::class, 'getCategoryById']);
+Route::get('/tag/{tag}/', [MainController::class, 'getTag']);

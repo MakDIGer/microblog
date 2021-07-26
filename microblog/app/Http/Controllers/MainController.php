@@ -31,6 +31,10 @@ class MainController extends Controller
         return view('pages.about', ['categories' => $categories]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function getCategoryById($id)
     {
         $categories = Category::All();
@@ -41,6 +45,18 @@ class MainController extends Controller
             'posts' => $posts,
             'categories' => $categories,
             'currentCategory' => $currentCategory
+        ]);
+    }
+
+    public function getTag($tag)
+    {
+        $categories = Category::All();
+        $posts = Post::where('tags', 'like', '%' . $tag . '%')->paginate(4);
+
+        return view('pages.main', [
+            'posts' => $posts,
+            'categories' => $categories,
+            'tag' => $tag
         ]);
     }
 }
