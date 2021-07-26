@@ -15,11 +15,16 @@
             <h3 class="title__post"><a href="/tag/{{ $tag }}/" class="link">&#123; // {{ $tag }} // }</a></h3>
         </section>
     @endif
+    @if(isset($date))
+        <section class="post">
+            <h3 class="title__post"><a href="/datePosts/{{ $date }}/" class="link">&#123; // {{ $date }} // }</a></h3>
+        </section>
+    @endif
     @foreach ($posts as $post)
     <section class="post">
         <h3 class="title__post"><a href="/post/{{ $post->id }}/" class="link">{{ $post->title }}</a></h3>
         <h4 class="subtitle__post">{ Категория: <a href="/category/{{ $post->category['id'] }}/" class="link">{{ $post->category['title'] }}</a>, Дата публикации:
-            <a href="/datePosts/{{ date('d-m-Y', strtotime($post->created_at)) }}/" class="link"><time datetime="{{ date('Y-m-d', strtotime($post->created_at)) }}">{{ date('d.m.Y', strtotime($post->created_at)) }}</time></a> }</h4>
+            <a href="/datePosts/{{ date('Y-m-d', strtotime($post->created_at)) }}/" class="link"><time datetime="{{ date('Y-m-d', strtotime($post->created_at)) }}">{{ date('d.m.Y', strtotime($post->created_at)) }}</time></a> }</h4>
         <p class="text__post">
             {{!! $post->prevText !!}}
         </p>
