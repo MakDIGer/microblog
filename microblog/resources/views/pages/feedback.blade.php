@@ -6,11 +6,16 @@
 
 @section('content')
     <section id="feedback" class="post">
-        <h3 class="title__post"><a href="/feedback" class="link">&#123; // Обратная связь // }</a></h3>
-        <p class="text__post mt-4">
-            Если у вас есть какие-либо вопросы или предложения по поводу данного блога, вы можете оставить сообщение
-            автору данного блога благодаря форме ниже.
+        <h3 class="title__post"><a href="#" class="link">{ // Обратная связь // }</a></h3>
+        <p class="text__post">
+            Если у вас есть какие-либо вопросы или предложения по поводу данного блога, вы
+            можете оставить сообщение автору данного блога благодаря форме ниже.
         </p>
-        <p>TODO: Сделать форму тут ...</p>
+        <form action="/feedback" method="POST" class="mt-4">
+            <input type="text" class="form-control" name="name" placeholder="Ваше имя: " required><br>
+            <input type="email" class="form-control" name="email" placeholder="Ваш email: " required><br>
+            <textarea name="text" class="form-control" id="text" cols="30" rows="10" placeholder="Ваш фидбэк: " required></textarea><br>
+            <input type="submit" class="btn btn-danger" value="Отправить">
+        </form>
     </section>
 @endsection
