@@ -12,6 +12,7 @@
             можете оставить сообщение автору данного блога благодаря форме ниже.
         </p>
         <form action="/feedback" method="POST" class="mt-4">
+            @csrf
             <input type="text" class="form-control" name="name" placeholder="Ваше имя: " required><br>
             <input type="email" class="form-control" name="email" placeholder="Ваш email: " required><br>
             <textarea name="text" class="form-control" id="text" cols="30" rows="10" placeholder="Ваш фидбэк: " required></textarea><br>
