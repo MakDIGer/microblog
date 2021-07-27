@@ -11,6 +11,11 @@
             Если у вас есть какие-либо вопросы или предложения по поводу данного блога, вы
             можете оставить сообщение автору данного блога благодаря форме ниже.
         </p>
+        @if (isset($success))
+            <div style="background-color: green; border-radius: 5px; color: white;padding: 10px 10px;font-family: 'Roboto', sans-serif; font-size: 14px;">
+                Фидбэк успешно отправлен!
+            </div>
+        @endif
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
