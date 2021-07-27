@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\FeedBack;
 use Illuminate\Http\Request;
 
 class FeedBackController extends Controller
@@ -28,6 +29,19 @@ class FeedBackController extends Controller
             'text_feedback' => 'required|min:4|max:500'
         ]);
 
+        $feedback = new FeedBack();
+
+        $feedback->name = $validated['name_feedback'];
+        $feedback->email = $validated['email_feedback'];
+        $feedback->text = $validated['text_feedback'];
+        $feedback->isAnswered = false;
+
+        $feedback->save();
+
+        return view('pages.feedback', [
+            'categories' => $categories,
+            'success' => true
+        ]);
 
     }
 }
