@@ -22,5 +22,6 @@ Route::get('/about', [MainController::class, 'aboutPage']);
 Route::get('/category/{id}/', [MainController::class, 'getCategoryById']);
 Route::get('/tag/{tag}/', [MainController::class, 'getTag']);
 Route::get('/datePosts/{date}/', [MainController::class, 'getDate']);
+Route::get('/post/{id}/', [MainController::class, 'showPost']);
 Route::get('/feedback', [FeedBackController::class, 'showForm']);
 Route::post('/feedback', [FeedBackController::class, 'sendForm']);

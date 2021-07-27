@@ -48,6 +48,10 @@ class MainController extends Controller
         ]);
     }
 
+    /**
+     * @param $tag
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function getTag($tag)
     {
         $categories = Category::All();
@@ -60,6 +64,10 @@ class MainController extends Controller
         ]);
     }
 
+    /**
+     * @param $date
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function getDate($date)
     {
         $categories = Category::All();
@@ -69,6 +77,17 @@ class MainController extends Controller
             'categories' => $categories,
             'posts' => $posts,
             'date' => $date
+        ]);
+    }
+
+    public function showPost($id)
+    {
+        $categories = Category::All();
+        $post = Post::where('id', $id)->first();
+
+        return view('pages.post', [
+            'categories' => $categories,
+            'post' => $post
         ]);
     }
 }
