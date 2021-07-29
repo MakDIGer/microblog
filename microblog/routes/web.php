@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MainController;
 use \App\Http\Controllers\FeedBackController;
+use \App\Http\Controllers\AdminController;
+use \App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,6 @@ Route::get('/datePosts/{date}/', [MainController::class, 'getDate']);
 Route::get('/post/{id}/', [MainController::class, 'showPost']);
 Route::get('/feedback', [FeedBackController::class, 'showForm']);
 Route::post('/feedback', [FeedBackController::class, 'sendForm']);
+
+Route::get('/login', [LoginController::class, 'showForm']);
+Route::get('/admin/', [AdminController::class, 'getRecords']);
