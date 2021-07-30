@@ -8,6 +8,7 @@ class AdminController extends Controller
 {
     public function getRecords()
     {
+
         return view('admin.records');
     }
 }
