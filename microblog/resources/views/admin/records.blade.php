@@ -48,7 +48,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Поиск" aria-label="Search">
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="#">Выход</a>
+            <a class="nav-link px-3" href="{{ route('logout') }}">Выход</a>
         </div>
     </div>
 </header>
@@ -87,6 +87,12 @@
                     <span>Статистика</span>
                 </h6>
                 <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="calendar"></span>
+                            Пользователь: {{ auth()->user()['login'] }}
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="database"></span>
