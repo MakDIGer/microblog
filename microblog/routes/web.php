@@ -28,5 +28,9 @@ Route::get('/post/{id}/', [MainController::class, 'showPost']);
 Route::get('/feedback', [FeedBackController::class, 'showForm']);
 Route::post('/feedback', [FeedBackController::class, 'sendForm']);
 
-Route::get('/login', [LoginController::class, 'showForm']);
-Route::get('/admin/', [AdminController::class, 'getRecords']);
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'getRecords'])->middleware('auth');
+    Route::get('/login', [LoginController::class, 'showForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'authentication']);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
