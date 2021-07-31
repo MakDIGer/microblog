@@ -28,9 +28,16 @@ Route::get('/post/{id}/', [MainController::class, 'showPost']);
 Route::get('/feedback', [FeedBackController::class, 'showForm']);
 Route::post('/feedback', [FeedBackController::class, 'sendForm']);
 
+
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'getRecords'])->middleware('auth');
     Route::get('/login', [LoginController::class, 'showForm'])->name('login');
     Route::post('/login', [LoginController::class, 'authentication']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/', [AdminController::class, 'getRecords'])->name('admin-main');
+        Route::get('/records', [AdminController::class, 'getRecords'])->name('admin-records');
+        Route::get('/categories', [AdminController::class, 'getCategories'])->name('admin-categories');
+        Route::get('/feedbacks', [AdminController::class, 'getFeedbacks'])->name('admin-feedbacks');
+    });
 });
