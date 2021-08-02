@@ -39,6 +39,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/records', [AdminController::class, 'getRecords'])->name('admin-records');
         Route::get('/categories', [AdminController::class, 'getCategories'])->name('admin-categories');
         Route::get('/feedbacks', [AdminController::class, 'getFeedbacks'])->name('admin-feedbacks');
+        Route::get('/category/new', [AdminController::class, 'newCategoryShow'])->name('new-category');
+        Route::post('/category/new', [AdminController::class, 'newCategory']);
         Route::get('/category/edit/{id}', [AdminController::class, 'editCategoryShow'])->name('edit-category');
         Route::post('/category/edit/{id}', [AdminController::class, 'editCategory']);
         Route::get('/category/delete/{id}', [AdminController::class, 'deleteCategory'])->name('delete-category');
