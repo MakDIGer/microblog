@@ -2,6 +2,7 @@
 
 @section('content')
     <h2>Категории</h2>
+    <a href="{{ route('new-category') }}" class="btn btn-primary mb-4">Новая</a>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
