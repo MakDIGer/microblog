@@ -17,8 +17,8 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->title }}</td>
-                <td><a href="#"><span data-feather="edit"></span></a></td>
-                <td><a href="#"><span data-feather="x-square"></span></a></td>
+                <td><a href="{{ route('edit-category', ['id' => $category->id]) }}"><span data-feather="edit"></span></a></td>
+                <td><a href="{{ route('delete-category', ['id' => $category->id]) }}"><span data-feather="x-square"></span></a></td>
             </tr>
             @endforeach
             </tbody>
