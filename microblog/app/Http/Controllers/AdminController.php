@@ -30,6 +30,7 @@ class AdminController extends Controller
     public function editCategoryShow($id)
     {
         $category = Category::where('id', $id)->first();
+
         return view('admin.edit-category', [
             'category' => $category
         ]);
@@ -40,14 +41,51 @@ class AdminController extends Controller
         $validated = $request->validate([
             'title_edit-category' => 'required|min:4|max:254'
         ]);
-        $res = DB::table('categories')->where('id',$id)->update(['title' => $validated['title_edit-category']]);
+        
+        $category = Category::where('id', $id)->first();
+        $category->title = $validated['title_edit-category'];
+        $category->save();
 
-        if ($res) {
+        if ($category->title === $validated['title_edit-category'])
+        {
             return $this->getCategories();
         }
 
         return back()->withErrors([
             'error' => 'Ошибка обновления записи в БД!'
         ]);
+    }
+
+    public function newCategoryShow()
+    {
+        return view('admin.new-category-show');
+    }
+
+    public function newCategory(Request $request)
+    {
+        $validated = $request->validate([
+            'title_new-category' => 'required|min:3|max:254'
+        ]);
+
+        $category = new Category();
+        $category->title = $validated['title_new-category'];
+        $category->save();
+
+        if ($category->title === $validated['title_new-category'])
+        {
+            return $this->getCategories();
+        }
+
+        return back()->withErrors([
+            'error' => 'Ошибка добавления новой категории в БД!'
+        ]);
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::where('id', $id);
+        $category->delete();
+
+        return $this->getCategories();
     }
 }
