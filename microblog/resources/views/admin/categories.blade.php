@@ -3,6 +3,15 @@
 @section('content')
     <h2>Категории</h2>
     <a href="{{ route('new-category') }}" class="btn btn-primary mb-4">Новая</a>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
@@ -24,5 +33,6 @@
             @endforeach
             </tbody>
         </table>
+        {{ $categories->links('vendor.pagination.bootstrap-4') }}
     </div>
 @endsection
