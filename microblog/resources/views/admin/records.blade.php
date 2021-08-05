@@ -2,6 +2,16 @@
 
 @section('content')
             <h2>Записи</h2>
+            <a href="{{ route('new-record') }}" class="btn btn-primary mb-4">Новая</a>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
@@ -16,34 +26,19 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($posts as $post)
                     <tr>
-                        <td>1</td>
-                        <td>Новость запись 0</td>
-                        <td>Категория 4</td>
-                        <td>24.07.2021</td>
-                        <td>24.07.2021</td>
+                        <td>{{ $post->id }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->category['title'] }}</td>
+                        <td>{{ $post->created_at }}</td>
+                        <td>{{ $post->updated_at }}</td>
                         <td><a href="#"><span data-feather="edit"></span></a></td>
                         <td><a href="#"><span data-feather="x-square"></span></a></td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Новость запись 1</td>
-                        <td>Категория 3</td>
-                        <td>24.07.2021</td>
-                        <td>24.07.2021</td>
-                        <td><a href="#"><span data-feather="edit"></span></a></td>
-                        <td><a href="#"><span data-feather="x-square"></span></a></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Новость запись 2</td>
-                        <td>Категория 2</td>
-                        <td>24.07.2021</td>
-                        <td>24.07.2021</td>
-                        <td><a href="#"><span data-feather="edit"></span></a></td>
-                        <td><a href="#"><span data-feather="x-square"></span></a></td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
+                {{ $posts->links('vendor.pagination.bootstrap-4') }}
             </div>
 @endsection
