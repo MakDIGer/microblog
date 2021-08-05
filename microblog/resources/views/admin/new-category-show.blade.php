@@ -12,7 +12,7 @@
                 </ul>
             </div>
         @endif
-        <form method="POST" action="{{ route('new-category') }}">
+        <form method="POST" action="{{ route('new-category-add') }}">
             @csrf
             <div class="mb-3">
                 <label for="title_new-category" class="form-label">Категория</label>
