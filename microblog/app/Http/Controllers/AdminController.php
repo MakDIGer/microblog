@@ -127,6 +127,9 @@ class AdminController extends Controller
         return $this->getCategories();
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function newRecordShow()
     {
         $categories = Category::All();
@@ -136,6 +139,10 @@ class AdminController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function newRecord(Request $request)
     {
         $validated = $request->validate([
@@ -162,5 +169,42 @@ class AdminController extends Controller
         return back()->withErrors([
             'error' => 'Ошибка добавления записи в БД!'
         ]);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function deleteRecord($id)
+    {
+        $post = Post::where('id', $id);
+        $post->delete();
+
+        return $this->getRecords();
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function editRecordShow($id)
+    {
+        $post = Post::where('id', $id)->first();
+        $categories = Category::All();
+
+        return view('admin.edit-record', [
+            'id' => $id,
+            'post' => $post,
+            'categories' => $categories
+        ]);
+    }
+
+    public function editRecord(Request $request, $id)
+    {
+        $validated = $request->validate([
+            // TODO: Сделать валидацию данных для редактирования записи
+        ]);
+
+        // TODO: Занести изменения в БД
     }
 }
