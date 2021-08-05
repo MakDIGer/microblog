@@ -37,7 +37,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/admin-panel/css/dashboard.css" rel="stylesheet">
-    <script defer src="/admin-panel/js/script.bundle.js"></script><link href="/css/style.css" rel="stylesheet"></head>
+    <script defer src="/admin-panel/js/script.bundle.js"></script></head>
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
