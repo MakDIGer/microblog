@@ -33,8 +33,8 @@
                         <td>{{ $post->category['title'] }}</td>
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
-                        <td><a href="#"><span data-feather="edit"></span></a></td>
-                        <td><a href="#"><span data-feather="x-square"></span></a></td>
+                        <td><a href="{{ route('edit-record', ['id' => $post->id]) }}"><span data-feather="edit"></span></a></td>
+                        <td><a href="{{ route('delete-record', ['id' => $post->id]) }}"><span data-feather="x-square"></span></a></td>
                     </tr>
                     @endforeach
                     </tbody>
