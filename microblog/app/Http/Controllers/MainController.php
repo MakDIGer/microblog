@@ -14,7 +14,7 @@ class MainController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $posts = Post::paginate(4);
+        $posts = Post::orderByDesc('id')->paginate(4);
 
         return view('pages.main', [
             'posts' => $posts,
@@ -38,7 +38,7 @@ class MainController extends Controller
     public function getCategoryById($id)
     {
         $categories = Category::All();
-        $posts = Post::where('category_id', $id)->paginate(4);
+        $posts = Post::where('category_id', $id)->orderByDesc('id')->paginate(4);
         $currentCategory = Category::where('id', $id)->first();
 
         return view('pages.main', [
@@ -55,7 +55,7 @@ class MainController extends Controller
     public function getTag($tag)
     {
         $categories = Category::All();
-        $posts = Post::where('tags', 'like', '%' . $tag . '%')->paginate(4);
+        $posts = Post::where('tags', 'like', '%' . $tag . '%')->orderByDesc('id')->paginate(4);
 
         return view('pages.main', [
             'posts' => $posts,
@@ -71,7 +71,7 @@ class MainController extends Controller
     public function getDate($date)
     {
         $categories = Category::All();
-        $posts = Post::whereDate('created_at', $date)->paginate(4);
+        $posts = Post::whereDate('created_at', $date)->orderByDesc('id')->paginate(4);
 
         return view('pages.main', [
             'categories' => $categories,
@@ -80,6 +80,10 @@ class MainController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function showPost($id)
     {
         $categories = Category::All();
