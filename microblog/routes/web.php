@@ -37,7 +37,10 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [AdminController::class, 'getRecords'])->name('admin-main');
         Route::get('/records', [AdminController::class, 'getRecords'])->name('admin-records');
-        Route::get('/records/new', [AdminController::class, 'newRecordShow'])->name('new-record');
+        Route::get('/record/new', [AdminController::class, 'newRecordShow'])->name('new-record');
+        Route::get('/record/edit/{id}', [AdminController::class, 'editRecordShow'])->name('edit-record');
+        Route::post('/record/edit/{id}', [AdminController::class, 'editRecord']);
+        Route::get('/record/delete/{id}', [AdminController::class, 'deleteRecord'])->name('delete-record');
         Route::post('/records', [AdminController::class, 'newRecord'])->name('new-record-add');
         Route::get('/categories', [AdminController::class, 'getCategories'])->name('admin-categories');
         Route::get('/feedbacks', [AdminController::class, 'getFeedbacks'])->name('admin-feedbacks');
