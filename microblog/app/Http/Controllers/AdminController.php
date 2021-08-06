@@ -23,6 +23,24 @@ class AdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function getRecordsSearch(Request $request)
+    {
+        $validated = $request->validate([
+            'search' => 'required|min:1|max:250'
+        ]);
+
+        $posts = Post::where('title', 'like', '%' . $validated['search'] . '%')->orderByDesc('id')->paginate(10);
+        $posts->appends(['search' => $validated['search']]);
+
+        return view('admin.records', [
+            'posts' => $posts
+        ]);
+    }
+
+    /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function getCategories()
@@ -70,7 +88,7 @@ class AdminController extends Controller
         $category->title = $validated['title_edit-category'];
         $category->save();
 
-        if ($category->title === $validated['title_edit-category'])
+        if ($category->wasChanged())
         {
             return $this->getCategories();
         }
@@ -199,12 +217,37 @@ class AdminController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function editRecord(Request $request, $id)
     {
         $validated = $request->validate([
-            // TODO: Сделать валидацию данных для редактирования записи
+            'title_edit-record' => 'required|min:3|max:250',
+            'category_id-edit-record' => 'required|numeric',
+            'prevText_edit-record' => 'required|min:3|max:500',
+            'text_edit-record' => 'required|min:3',
+            'tags_edit-record' => 'min:3|max:250'
         ]);
 
-        // TODO: Занести изменения в БД
+        $post = Post::where('id', $id)->first();
+
+        $post->title = $validated['title_edit-record'];
+        $post->category_id = $validated['category_id-edit-record'];
+        $post->prevText = $validated['prevText_edit-record'];
+        $post->text = $validated['text_edit-record'];
+        $post->tags = $validated['tags_edit-record'];
+        $post->save();
+
+        if ($post->wasChanged())
+        {
+            return $this->getRecords();
+        }
+
+        return back()->withErrors([
+            'error' => 'Данные не изменены в БД!'
+        ]);
     }
 }
