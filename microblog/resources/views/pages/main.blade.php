@@ -26,7 +26,7 @@
         <h4 class="subtitle__post">{ Категория: <a href="/category/{{ $post->category['id'] }}/" class="link">{{ $post->category['title'] }}</a>, Дата публикации:
             <a href="/datePosts/{{ date('Y-m-d', strtotime($post->created_at)) }}/" class="link"><time datetime="{{ date('Y-m-d', strtotime($post->created_at)) }}">{{ date('d.m.Y', strtotime($post->created_at)) }}</time></a> }</h4>
         <p class="text__post">
-            {{!! $post->prevText !!}}
+            &#123;{{!! $post->prevText !!}}}
         </p>
         @php
             $arrTags = explode(', ', $post->tags);
