@@ -37,6 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [AdminController::class, 'getRecords'])->name('admin-main');
         Route::get('/records', [AdminController::class, 'getRecords'])->name('admin-records');
+        Route::get('/records/search/', [AdminController::class, 'getRecordsSearch'])->name('admin-search');
         Route::get('/record/new', [AdminController::class, 'newRecordShow'])->name('new-record');
         Route::get('/record/edit/{id}', [AdminController::class, 'editRecordShow'])->name('edit-record');
         Route::post('/record/edit/{id}', [AdminController::class, 'editRecord']);
