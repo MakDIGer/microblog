@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MainController;
 use \App\Http\Controllers\FeedBackController;
+use \App\Http\Controllers\AdminFeedBacksController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\LoginController;
 
@@ -44,11 +45,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/record/delete/{id}', [AdminController::class, 'deleteRecord'])->name('delete-record');
         Route::post('/records', [AdminController::class, 'newRecord'])->name('new-record-add');
         Route::get('/categories', [AdminController::class, 'getCategories'])->name('admin-categories');
-        Route::get('/feedbacks', [AdminController::class, 'getFeedbacks'])->name('admin-feedbacks');
         Route::get('/category/new', [AdminController::class, 'newCategoryShow'])->name('new-category');
         Route::post('/categories', [AdminController::class, 'newCategory'])->name('new-category-add');
         Route::get('/category/edit/{id}', [AdminController::class, 'editCategoryShow'])->name('edit-category');
         Route::post('/category/edit/{id}', [AdminController::class, 'editCategory']);
         Route::get('/category/delete/{id}', [AdminController::class, 'deleteCategory'])->name('delete-category');
+        Route::get('/feedbacks', [AdminFeedBacksController::class, 'getFeedbacks'])->name('admin-feedbacks');
     });
 });
