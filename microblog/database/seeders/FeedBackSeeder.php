@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FeedBack extends Seeder
+class FeedBackSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -63,6 +63,7 @@ class FeedBack extends Seeder
                       ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                       himenaeos. In enim purus, pretium id turpis quis, lacinia finibus ex. Etiam in ultricies odio.
                       Vestibulum nec tincidunt ante, nec rhoncus ipsum. Etiam malesuada sem quis posuere luctus. ',
+                    'answer' => '',
                     'isAnswered' => rand(0, 1),
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
@@ -71,8 +72,5 @@ class FeedBack extends Seeder
 
             DB::table('feedbacks')->insert($feedbacks_library);
         }
-
-
-        // TODO: Дописать сидер для таблицы фидбэков
     }
 }
