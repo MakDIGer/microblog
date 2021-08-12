@@ -5,6 +5,7 @@ use \App\Http\Controllers\MainController;
 use \App\Http\Controllers\FeedBackController;
 use \App\Http\Controllers\AdminFeedBacksController;
 use \App\Http\Controllers\AdminController;
+use \App\Http\Controllers\AdminRecordsController;
 use \App\Http\Controllers\LoginController;
 
 /*
@@ -36,14 +37,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/', [AdminController::class, 'getRecords'])->name('admin-main');
-        Route::get('/records', [AdminController::class, 'getRecords'])->name('admin-records');
-        Route::get('/records/search/', [AdminController::class, 'getRecordsSearch'])->name('admin-search');
-        Route::get('/record/new', [AdminController::class, 'newRecordShow'])->name('new-record');
-        Route::get('/record/edit/{id}', [AdminController::class, 'editRecordShow'])->name('edit-record');
-        Route::post('/record/edit/{id}', [AdminController::class, 'editRecord']);
-        Route::get('/record/delete/{id}', [AdminController::class, 'deleteRecord'])->name('delete-record');
-        Route::post('/records', [AdminController::class, 'newRecord'])->name('new-record-add');
+        Route::get('/', [AdminRecordsController::class, 'getRecords'])->name('admin-main');
+        Route::get('/records', [AdminRecordsController::class, 'getRecords'])->name('admin-records');
+        Route::get('/records/search/', [AdminRecordsController::class, 'getRecordsSearch'])->name('admin-search');
+        Route::get('/record/new', [AdminRecordsController::class, 'newRecordShow'])->name('new-record');
+        Route::get('/record/edit/{id}', [AdminRecordsController::class, 'editRecordShow'])->name('edit-record');
+        Route::post('/record/edit/{id}', [AdminRecordsController::class, 'editRecord']);
+        Route::get('/record/delete/{id}', [AdminRecordsController::class, 'deleteRecord'])->name('delete-record');
+        Route::post('/records', [AdminRecordsController::class, 'newRecord'])->name('new-record-add');
         Route::get('/categories', [AdminController::class, 'getCategories'])->name('admin-categories');
         Route::get('/category/new', [AdminController::class, 'newCategoryShow'])->name('new-category');
         Route::post('/categories', [AdminController::class, 'newCategory'])->name('new-category-add');
