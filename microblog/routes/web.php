@@ -24,10 +24,10 @@ App::setLocale('ru');
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/about', [MainController::class, 'aboutPage']);
-Route::get('/category/{id}/', [MainController::class, 'getCategoryById']);
-Route::get('/tag/{tag}/', [MainController::class, 'getTag']);
-Route::get('/datePosts/{date}/', [MainController::class, 'getDate']);
-Route::get('/post/{id}/', [MainController::class, 'showPost']);
+Route::get('/category/{id}', [MainController::class, 'getCategoryById']);
+Route::get('/tag/{tag}', [MainController::class, 'getTag']);
+Route::get('/datePosts/{date}', [MainController::class, 'getDate']);
+Route::get('/post/{id}', [MainController::class, 'showPost']);
 Route::get('/feedback', [FeedBackController::class, 'showForm']);
 Route::post('/feedback', [FeedBackController::class, 'sendForm']);
 
@@ -40,7 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [AdminRecordsController::class, 'getRecords'])->name('admin-main');
         Route::get('/records', [AdminRecordsController::class, 'getRecords'])->name('admin-records');
-        Route::get('/records/search/', [AdminRecordsController::class, 'getRecordsSearch'])->name('admin-search');
+        Route::get('/records/search', [AdminRecordsController::class, 'getRecordsSearch'])->name('admin-search');
         Route::get('/record/new', [AdminRecordsController::class, 'newRecordShow'])->name('new-record');
         Route::get('/record/edit/{id}', [AdminRecordsController::class, 'editRecordShow'])->name('edit-record');
         Route::post('/record/edit/{id}', [AdminRecordsController::class, 'editRecord']);
@@ -53,5 +53,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/category/edit/{id}', [AdminCategoriesController::class, 'editCategory']);
         Route::get('/category/delete/{id}', [AdminCategoriesController::class, 'deleteCategory'])->name('delete-category');
         Route::get('/feedbacks', [AdminFeedBacksController::class, 'getFeedbacks'])->name('admin-feedbacks');
+        Route::get('/feedback/{id}/answer', [AdminFeedBacksController::class, 'answerFeedbackShow'])->name('admin-answer-feedback');
+        Route::get('/feedback/{id}/more', [AdminFeedBacksController::class, 'moreFeedback'])->name('admin-more-feedback');
+        Route::post('/feedback/{id}/answer', [AdminFeedBacksController::class, 'answerFeedback']);
+        Route::get('/feedback/{id}/delete', [AdminFeedBacksController::class, 'deleteFeedbackShow'])->name('admin-delete-feedback');
     });
 });
