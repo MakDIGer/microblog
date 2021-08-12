@@ -18,4 +18,13 @@ class AdminFeedBacksController extends Controller
             'feedbacks' => $feedbacks
         ]);
     }
+
+    public function answerFeedbackShow($id)
+    {
+        $feedback = FeedBack::where('id', $id)->firstOrFail();
+
+        return view('admin.answer-feedback', [
+            'feedback' => $feedback
+        ]);
+    }
 }
