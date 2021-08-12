@@ -17,37 +17,20 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($feedbacks as $feedback)
             <tr>
-                <td>1</td>
-                <td>Буркин Василий Павлович</td>
-                <td><a href="mailto:burkin@mail.ru">burkin@mail.ru</a></td>
-                <td>Нет</td>
-                <td>31.07.2021</td>
-                <td>31.07.2021</td>
-                <td><a href="#"><span data-feather="edit"></span></a></td>
-                <td><a href="#"><span data-feather="x-square"></span></a></td>
+                <td>{{ $feedback->id }}</td>
+                <td>{{ $feedback->name }}</td>
+                <td><a href="mailto:{{ $feedback->email }}">{{ $feedback->email }}</a></td>
+                <td>{{ $feedback->isAnswered ? 'Да' : 'Нет' }}</td>
+                <td>{{ $feedback->created_at }}</td>
+                <td>{{ $feedback->updated_at }}</td>
+                <td>{!! $feedback->isAnswered ? '<a href="' . route('admin-more-feedback', $feedback->id) . '"><span data-feather="arrow-right-circle"></span></a>' : '' !!}{!! !$feedback->isAnswered ? '<a href="' . route('admin-answer-feedback', $feedback->id) . '"><span data-feather="edit"></span></a>' : '' !!}</td>
+                <td><a href="{{ route('admin-delete-feedback', $feedback->id) }}"><span data-feather="x-square"></span></a></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Иванов Иван Иванович</td>
-                <td><a href="mailto:ivanovich@mail.ru">ivanovich@mail.ru</a></td>
-                <td>Да</td>
-                <td>31.07.2021</td>
-                <td>31.07.2021</td>
-                <td><a href="#"><span data-feather="edit"></span></a></td>
-                <td><a href="#"><span data-feather="x-square"></span></a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Гарбулин Василий Игоревич</td>
-                <td><a href="mailto:garbulin@mail.ru">garbulin@mail.ru</a></td>
-                <td>Нет</td>
-                <td>31.07.2021</td>
-                <td>31.07.2021</td>
-                <td><a href="#"><span data-feather="edit"></span></a></td>
-                <td><a href="#"><span data-feather="x-square"></span></a></td>
-            </tr>
+            @endforeach
             </tbody>
         </table>
+        {{ $feedbacks->links('vendor.pagination.bootstrap-4') }}
     </div>
 @endsection
