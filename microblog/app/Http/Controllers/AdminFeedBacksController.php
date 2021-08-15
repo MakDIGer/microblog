@@ -19,11 +19,28 @@ class AdminFeedBacksController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function answerFeedbackShow($id)
     {
         $feedback = FeedBack::where('id', $id)->firstOrFail();
 
         return view('admin.answer-feedback', [
+            'feedback' => $feedback
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function moreFeedback($id)
+    {
+        $feedback = FeedBack::where('id', $id)->firstOrFail();
+
+        return view('admin.more-feedback', [
             'feedback' => $feedback
         ]);
     }
