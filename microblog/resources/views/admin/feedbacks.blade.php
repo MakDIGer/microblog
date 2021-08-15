@@ -25,8 +25,8 @@
                 <td>{{ $feedback->isAnswered ? 'Да' : 'Нет' }}</td>
                 <td>{{ $feedback->created_at }}</td>
                 <td>{{ $feedback->updated_at }}</td>
-                <td>{!! $feedback->isAnswered ? '<a href="' . route('admin-more-feedback', $feedback->id) . '"><span data-feather="arrow-right-circle"></span></a>' : '' !!}{!! !$feedback->isAnswered ? '<a href="' . route('admin-answer-feedback', $feedback->id) . '"><span data-feather="edit"></span></a>' : '' !!}</td>
-                <td><a href="{{ route('admin-delete-feedback', $feedback->id) }}"><span data-feather="x-square"></span></a></td>
+                <td>{!! $feedback->isAnswered ? '<a href="' . route('admin-more-feedback', $feedback->id) . '" title="Подробнее"><span data-feather="arrow-right-circle"></span></a>' : '' !!}{!! !$feedback->isAnswered ? '<a href="' . route('admin-answer-feedback', $feedback->id) . '" title="Ответить"><span data-feather="edit"></span></a>' : '' !!}</td>
+                <td><a href="{{ route('admin-delete-feedback', $feedback->id) }}" title="Удалить"><span data-feather="x-square"></span></a></td>
             </tr>
             @endforeach
             </tbody>
