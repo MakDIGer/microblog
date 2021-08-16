@@ -9,23 +9,28 @@ use Illuminate\Http\Request;
 class AdminCategoriesController extends Controller
 {
     /**
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function getCategories()
+    public function getCategories(Request $request)
     {
         $categories = Category::orderByDesc('id')->paginate(10);
 
         return view('admin.categories', [
-            'categories' => $categories
+            'categories' => $categories,
+            'stats' => $request['stats']
         ]);
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function newCategoryShow()
+    public function newCategoryShow(Request $request)
     {
-        return view('admin.new-category-show');
+        return view('admin.new-category-show', [
+            'stats' => $request['stats']
+        ]);
     }
 
     /**
@@ -53,15 +58,17 @@ class AdminCategoriesController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function editCategoryShow($id)
+    public function editCategoryShow(Request $request, $id)
     {
         $category = Category::where('id', $id)->first();
 
         return view('admin.edit-category', [
-            'category' => $category
+            'category' => $category,
+            'stats' => $request['stats']
         ]);
     }
 

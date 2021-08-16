@@ -9,14 +9,16 @@ use Illuminate\Http\Request;
 class AdminRecordsController extends Controller
 {
     /**
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function getRecords()
+    public function getRecords(Request $request)
     {
         $posts = Post::orderByDesc('id')->paginate(10);
 
         return view('admin.records', [
-            'posts' => $posts
+            'posts' => $posts,
+            'stats' => $request['stats']
         ]);
     }
 
@@ -34,27 +36,31 @@ class AdminRecordsController extends Controller
         $posts->appends(['search' => $validated['search']]);
 
         return view('admin.records', [
-            'posts' => $posts
+            'posts' => $posts,
+            'stats' => $request['stats']
         ]);
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function newRecordShow()
+    public function newRecordShow(Request $request)
     {
         $categories = Category::All();
 
         return view('admin.new-record', [
-            'categories' => $categories
+            'categories' => $categories,
+            'stats' => $request['stats']
         ]);
     }
 
     /**
+     * @param Request $request
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function editRecordShow($id)
+    public function editRecordShow(Request $request, $id)
     {
         $post = Post::where('id', $id)->first();
         $categories = Category::All();
@@ -62,7 +68,8 @@ class AdminRecordsController extends Controller
         return view('admin.edit-record', [
             'id' => $id,
             'post' => $post,
-            'categories' => $categories
+            'categories' => $categories,
+            'stats' => $request['stats']
         ]);
     }
 
