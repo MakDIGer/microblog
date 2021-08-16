@@ -35,6 +35,7 @@ class FeedBackController extends Controller
         $feedback->email = $validated['email_feedback'];
         $feedback->text = $validated['text_feedback'];
         $feedback->isAnswered = false;
+        $feedback->answer = '';
 
         $feedback->save();
 
