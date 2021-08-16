@@ -2,6 +2,15 @@
 
 @section('content')
     <h2>Обратная связь</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
