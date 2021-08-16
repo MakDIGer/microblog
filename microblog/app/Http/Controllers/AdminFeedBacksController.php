@@ -44,4 +44,25 @@ class AdminFeedBacksController extends Controller
             'feedback' => $feedback
         ]);
     }
+
+    public function answerFeedback(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'text_edit-feedback' => 'required|min:3'
+        ]);
+
+        $feedback = FeedBack::where('id', $id)->firstOrFail();
+        $feedback->answer = $validated['text_edit-feedback'];
+        $feedback->isAnswered = true;
+        if ($feedback->save())
+        {
+            return view('admin.more-feedback', [
+                'feedback' => $feedback
+            ]);
+        } else {
+            return back()->withErrors([
+                'error' => 'Ошибка сохранения!'
+            ]);
+        }
+    }
 }
