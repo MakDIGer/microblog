@@ -99,13 +99,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="database"></span>
-                            Записей в блоге:
+                            Записей в блоге: {{ $stats['posts_num'] }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="calendar"></span>
-                            Последний пост:
+                            Последний пост: {{ date('d.m.y', strtotime($stats['last_date_post'])) }}
                         </a>
                     </li>
                 </ul>
