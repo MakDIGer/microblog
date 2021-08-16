@@ -8,6 +8,7 @@ use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\AdminRecordsController;
 use \App\Http\Controllers\AdminCategoriesController;
 use \App\Http\Controllers\LoginController;
+use \App\Http\Middleware\StatPoints;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [LoginController::class, 'authentication']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', StatPoints::class])->group(function () {
         Route::get('/', [AdminRecordsController::class, 'getRecords'])->name('admin-main');
         Route::get('/records', [AdminRecordsController::class, 'getRecords'])->name('admin-records');
         Route::get('/records/search', [AdminRecordsController::class, 'getRecordsSearch'])->name('admin-search');
@@ -56,6 +57,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/feedback/{id}/answer', [AdminFeedBacksController::class, 'answerFeedbackShow'])->name('admin-answer-feedback');
         Route::get('/feedback/{id}/more', [AdminFeedBacksController::class, 'moreFeedback'])->name('admin-more-feedback');
         Route::post('/feedback/{id}/answer', [AdminFeedBacksController::class, 'answerFeedback']);
-        Route::get('/feedback/{id}/delete', [AdminFeedBacksController::class, 'deleteFeedbackShow'])->name('admin-delete-feedback');
+        Route::get('/feedback/{id}/delete', [AdminFeedBacksController::class, 'deleteFeedback'])->name('admin-delete-feedback');
     });
 });
