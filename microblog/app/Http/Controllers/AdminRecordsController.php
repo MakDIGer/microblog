@@ -99,7 +99,7 @@ class AdminRecordsController extends Controller
 
         if ($post->wasChanged())
         {
-            return $this->getRecords();
+            return redirect(route('admin-records'));
         }
 
         return back()->withErrors([
@@ -116,7 +116,7 @@ class AdminRecordsController extends Controller
         $post = Post::where('id', $id);
         $post->delete();
 
-        return $this->getRecords();
+        return redirect(route('admin-records'));
     }
 
     /**
@@ -143,7 +143,7 @@ class AdminRecordsController extends Controller
 
         if ($post->title === $validated['title_new-record'])
         {
-            return $this->getRecords();
+            return redirect(route('admin-records'));
         }
 
         return back()->withErrors([

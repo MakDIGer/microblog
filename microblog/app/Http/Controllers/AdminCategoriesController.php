@@ -45,11 +45,10 @@ class AdminCategoriesController extends Controller
 
         $category = new Category();
         $category->title = $validated['title_new-category'];
-        $category->save();
 
-        if ($category->title === $validated['title_new-category'])
+        if ($category->save())
         {
-            return $this->getCategories();
+            return redirect(route('admin-categories'));
         }
 
         return back()->withErrors([
@@ -89,7 +88,7 @@ class AdminCategoriesController extends Controller
 
         if ($category->wasChanged())
         {
-            return $this->getCategories();
+            return redirect(route('admin-categories'));
         }
 
         return back()->withErrors([
@@ -113,6 +112,6 @@ class AdminCategoriesController extends Controller
         };
         $category->delete();
 
-        return $this->getCategories();
+        return redirect(route('admin-categories'));
     }
 }
